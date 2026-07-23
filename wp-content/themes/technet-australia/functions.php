@@ -1,0 +1,140 @@
+<?php
+/**
+ * TechNet Australia theme bootstrap.
+ *
+ * @package TechNet_Australia
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+define( 'TECHNET_THEME_VERSION', '0.1.0' );
+
+require_once get_template_directory() . '/inc/components.php';
+
+/**
+ * Theme setup: supports, nav menus, image sizes.
+ */
+function technet_setup() {
+	add_theme_support( 'title-tag' );
+	add_theme_support( 'post-thumbnails' );
+	add_theme_support(
+		'html5',
+		array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script' )
+	);
+	add_theme_support( 'automatic-feed-links' );
+
+	register_nav_menus(
+		array(
+			'primary' => __( 'Primary Navigation', 'technet-australia' ),
+			'footer'  => __( 'Footer Links', 'technet-australia' ),
+		)
+	);
+}
+add_action( 'after_setup_theme', 'technet_setup' );
+
+/**
+ * Enqueue the ported design-system stylesheets in dependency order, plus
+ * page-specific scripts (currently just the member directory live filter).
+ */
+function technet_enqueue_assets() {
+	$theme_uri = get_template_directory_uri();
+
+	wp_enqueue_style( 'technet-tokens', $theme_uri . '/assets/css/tokens.css', array(), TECHNET_THEME_VERSION );
+	wp_enqueue_style( 'technet-base', $theme_uri . '/assets/css/base.css', array( 'technet-tokens' ), TECHNET_THEME_VERSION );
+	wp_enqueue_style( 'technet-components', $theme_uri . '/assets/css/components.css', array( 'technet-tokens' ), TECHNET_THEME_VERSION );
+	wp_enqueue_style( 'technet-layout', $theme_uri . '/assets/css/layout.css', array( 'technet-tokens', 'technet-components' ), TECHNET_THEME_VERSION );
+	wp_enqueue_style( 'technet-style', $theme_uri . '/style.css', array( 'technet-tokens', 'technet-base', 'technet-components', 'technet-layout' ), TECHNET_THEME_VERSION );
+
+	if ( is_page_template( 'page-member-directory.php' ) ) {
+		wp_enqueue_script( 'technet-member-directory', $theme_uri . '/assets/js/member-directory.js', array(), TECHNET_THEME_VERSION, true );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'technet_enqueue_assets' );
+
+/**
+ * Primary nav menu, falling back to the design system's placeholder nav
+ * (Conference / NEATTS / Forums / About) when no menu has been assigned yet
+ * in Appearance -> Menus — see Header.jsx in the source design system.
+ */
+function technet_primary_nav() {
+	if ( has_nav_menu( 'primary' ) ) {
+		wp_nav_menu(
+			array(
+				'theme_location' => 'primary',
+				'container'      => false,
+				'menu_class'     => 'technet-header__nav-list',
+				'depth'          => 1,
+			)
+		);
+		return;
+	}
+
+	$fallback = array(
+		'Conference' => home_url( '/conference/' ),
+		'NEATTS'     => home_url( '/neatts/' ),
+		'Forums'     => home_url( '/forums/' ),
+		'About'      => home_url( '/about/' ),
+	);
+
+	echo '<ul class="technet-header__nav-list">';
+	foreach ( $fallback as $label => $url ) {
+		printf(
+			'<li><a href="%1$s">%2$s</a></li>',
+			esc_url( $url ),
+			esc_html( $label )
+		);
+	}
+	echo '</ul>';
+}
+
+/**
+ * Footer links menu, falling back to the design system's placeholder footer
+ * links (Google Group / Conference archive / Contact) — see Footer.jsx.
+ */
+function technet_footer_nav() {
+	if ( has_nav_menu( 'footer' ) ) {
+		wp_nav_menu(
+			array(
+				'theme_location' => 'footer',
+				'container'      => false,
+				'menu_class'     => 'technet-footer__links',
+				'depth'          => 1,
+			)
+		);
+		return;
+	}
+
+	$fallback = array(
+		'Google Group'       => 'https://groups.google.com/',
+		'Conference archive' => home_url( '/conference/' ),
+		'Contact'            => home_url( '/about/' ),
+	);
+
+	echo '<div class="technet-footer__links">';
+	foreach ( $fallback as $label => $url ) {
+		printf(
+			'<a href="%1$s">%2$s</a>',
+			esc_url( $url ),
+			esc_html( $label )
+		);
+	}
+	echo '</div>';
+}
+
+/**
+ * True while PMP considers the current user an active member of the given
+ * level (or any level if $level_id is null). Returns false gracefully if
+ * Paid Memberships Pro isn't active, so templates can degrade to a public
+ * teaser instead of fataling.
+ *
+ * @param int|null $level_id Optional PMP membership level ID.
+ * @return bool
+ */
+function technet_is_member( $level_id = null ) {
+	if ( ! function_exists( 'pmpro_hasMembershipLevel' ) ) {
+		return false;
+	}
+	return (bool) pmpro_hasMembershipLevel( $level_id );
+}

@@ -1,0 +1,116 @@
+/*
+ * Design tokens — ported verbatim from the TechNet Australia Design System
+ * (Claude Design project 63fe9c91-9d03-4716-b628-c400d0c6b028):
+ * tokens/fonts.css, tokens/colors.css, tokens/typography.css,
+ * tokens/spacing.css, tokens/effects.css.
+ *
+ * Update the source design system first, then re-port here — don't hand-edit
+ * values that originate there.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+	/* fonts.css */
+	--font-sans: 'IBM Plex Sans', -apple-system, Helvetica, Arial, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+	/* colors.css */
+	--navy-900: #0b1f30;
+	--navy-800: #122e46;
+	--navy-700: #1c3f5c;
+	--navy-600: #2a5478;
+	--navy-500: #3d6d95;
+	--green-700: #1f6b45;
+	--green-600: #2f8f5b;
+	--green-500: #469e6c;
+	--green-100: #e3f1e8;
+	--neutral-0: #ffffff;
+	--neutral-50: #f7f6f3;
+	--neutral-100: #eeece6;
+	--neutral-200: #dedbd3;
+	--neutral-300: #c3bfb4;
+	--neutral-400: #9c968a;
+	--neutral-500: #787266;
+	--neutral-600: #59544b;
+	--neutral-700: #403c35;
+	--neutral-800: #2a2722;
+	--neutral-900: #1a1815;
+	--amber-600: #c9922b;
+	--amber-100: #faf1de;
+	--red-600: #b5461b;
+	--red-100: #f7e6de;
+	--blue-600: #2e6e9a;
+	--blue-100: #e1edf4;
+
+	--brand-primary: var(--navy-900);
+	--brand-accent: var(--green-600);
+	--surface-page: var(--neutral-50);
+	--surface-card: var(--neutral-0);
+	--surface-sunken: var(--neutral-100);
+	--surface-inverse: var(--navy-900);
+	--border-subtle: var(--neutral-200);
+	--border-default: var(--neutral-300);
+	--border-strong: var(--navy-900);
+	--text-primary: var(--neutral-900);
+	--text-secondary: var(--neutral-600);
+	--text-tertiary: var(--neutral-500);
+	--text-inverse: var(--neutral-0);
+	--text-link: var(--navy-700);
+	--text-link-hover: var(--green-700);
+	--state-success: var(--green-600);
+	--state-success-bg: var(--green-100);
+	--state-warning: var(--amber-600);
+	--state-warning-bg: var(--amber-100);
+	--state-error: var(--red-600);
+	--state-error-bg: var(--red-100);
+	--state-info: var(--blue-600);
+	--state-info-bg: var(--blue-100);
+	--focus-ring: var(--green-600);
+
+	/* typography.css */
+	--fs-display: 3.5rem;
+	--fs-h1: 2.5rem;
+	--fs-h2: 2rem;
+	--fs-h3: 1.5rem;
+	--fs-h4: 1.25rem;
+	--fs-body-lg: 1.125rem;
+	--fs-body: 1rem;
+	--fs-body-sm: 0.875rem;
+	--fs-caption: 0.75rem;
+	--fs-mono: 0.9rem;
+	--lh-tight: 1.15;
+	--lh-heading: 1.25;
+	--lh-body: 1.6;
+	--lh-caption: 1.4;
+	--fw-regular: 400;
+	--fw-medium: 500;
+	--fw-semibold: 600;
+	--fw-bold: 700;
+	--ls-tight: -0.01em;
+	--ls-caps: 0.08em;
+
+	/* spacing.css */
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 24px;
+	--space-6: 32px;
+	--space-7: 48px;
+	--space-8: 64px;
+	--space-9: 96px;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+	--radius-pill: 999px;
+	--container-max: 1200px;
+
+	/* effects.css */
+	--shadow-sm: 0 1px 2px rgba(11, 31, 48, 0.08);
+	--shadow-md: 0 4px 12px rgba(11, 31, 48, 0.1);
+	--shadow-lg: 0 12px 32px rgba(11, 31, 48, 0.14);
+	--ease-standard: cubic-bezier(.2, .7, .3, 1);
+	--duration-fast: 120ms;
+	--duration-base: 180ms;
+}

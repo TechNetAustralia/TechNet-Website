@@ -1,0 +1,18 @@
+# Composer-managed third-party plugins (pulled from wpackagist, not committed)
+/wp-content/plugins/*
+!/wp-content/plugins/technet-core
+
+/vendor/
+/node_modules/
+composer.phar
+
+# WordPress runtime artefacts
+/wp-content/uploads/
+/wp-content/upgrade/
+*.log
+
+# wp-env / editor / OS
+.wp-env-override.json
+.DS_Store
+.idea/
+.vscode/
