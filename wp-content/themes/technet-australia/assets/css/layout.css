@@ -59,8 +59,8 @@
 
 /* Hero — Home.jsx first section */
 .technet-hero {
-	padding: var(--space-9) var(--space-7);
-	min-height: 750px;
+	padding: var(--space-8) var(--space-7);
+	min-height: 600px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
