@@ -12,7 +12,7 @@
     "require": {
         "php": ">=8.0",
         "composer/installers": "^2.2",
-        "wpackagist-plugin/paid-memberships-pro": "^3.0",
+        "strangerstudios/paid-memberships-pro": "^3.0",
         "wpackagist-plugin/the-events-calendar": "^6.6",
         "wpackagist-plugin/wp-document-revisions": "^3.4"
     },

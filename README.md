@@ -17,10 +17,12 @@ Nothing here touches production hosting or DNS.
   that shouldn't live in the theme: speaker/session custom post types,
   conference registration + NEATTS nomination form handling, member profile
   fields, and a `wp technet seed-demo` WP-CLI command for demo content.
-- Third-party plugins (not committed, pulled by Composer from wpackagist):
+- Third-party plugins (not committed, pulled in by Composer):
   - **Paid Memberships Pro** — membership levels, gates the member directory
-    and document library
+    and document library. Not on wpackagist, so this comes from its own
+    Packagist package (`strangerstudios/paid-memberships-pro`) instead.
   - **The Events Calendar** — the annual conference + 3 regional forums
+    (via wpackagist)
   - **WP Document Revisions** — institutional document library
 
 ## Local setup
