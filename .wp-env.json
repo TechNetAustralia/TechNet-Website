@@ -1,6 +1,7 @@
 {
     "core": null,
     "phpVersion": "8.2",
+    "testsEnvironment": false,
     "themes": [
         "./wp-content/themes/technet-australia"
     ],
