@@ -28,7 +28,17 @@ Nothing here touches production hosting or DNS.
 ## Daily workflow (start here)
 
 Once you've done the one-time [local setup](#local-setup) below, this is all
-you need day to day:
+you need day to day.
+
+**No Terminal, please:** double-click **`Start Site.command`** and
+**`Stop Site.command`** in the repo folder (Finder may warn about running a
+downloaded script the very first time — click *Open* to allow it, it only
+needs approving once). `Start Site.command` also checks Docker Desktop is
+running and opens `http://localhost:8888` for you automatically. There's
+also **`Update Site.command`**, a double-click alternative to "Fetch
+origin" / "Pull origin" in GitHub Desktop.
+
+The Terminal versions of the same steps, if you'd rather:
 
 **Starting work:**
 
