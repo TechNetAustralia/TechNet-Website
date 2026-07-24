@@ -46,7 +46,7 @@ $home_page_content = $home_page ? apply_filters( 'the_content', $home_page->post
 			array(
 				'label'   => __( "This year's conference", 'technet-australia' ),
 				'variant' => 'accent',
-				'href'    => home_url( '/conference/' ),
+				'href'    => get_theme_mod( 'technet_conference_url', 'https://www.technetconference2026.com/' ),
 			)
 		);
 		echo technet_button( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

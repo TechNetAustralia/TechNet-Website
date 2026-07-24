@@ -91,6 +91,12 @@ to make it live.
 If you leave this empty, the hero just shows as a plain flat-colour section
 — no broken image, nothing looks wrong either way.
 
+**Same panel** (Appearance → Customize → Homepage) also has *"'This year's
+conference' button link"* — where the accent button on the homepage goes.
+Point it at an external conference site if there's a dedicated one this
+year, or leave it empty to link to the site's own `/conference/` page.
+Update this each year when the conference site changes.
+
 ## Adding conference speakers and schedule sessions
 
 These live under their own admin menu items, not as a page you edit:

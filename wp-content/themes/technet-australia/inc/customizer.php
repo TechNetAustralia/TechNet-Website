@@ -49,5 +49,24 @@ function technet_customize_register( $wp_customize ) {
 			)
 		)
 	);
+
+	$wp_customize->add_setting(
+		'technet_conference_url',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'esc_url_raw',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'technet_conference_url',
+		array(
+			'label'       => __( "'This year's conference' button link", 'technet-australia' ),
+			'description' => __( 'Where the homepage accent button goes — the external conference site if there is one this year, or leave empty to link to the built-in /conference/ page.', 'technet-australia' ),
+			'section'     => 'technet_homepage',
+			'type'        => 'url',
+		)
+	);
 }
 add_action( 'customize_register', 'technet_customize_register' );
