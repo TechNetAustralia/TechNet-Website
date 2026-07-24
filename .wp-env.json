@@ -1,0 +1,21 @@
+{
+    "core": null,
+    "phpVersion": "8.2",
+    "testsEnvironment": false,
+    "themes": [
+        "./wp-content/themes/technet-australia"
+    ],
+    "plugins": [
+        "./wp-content/plugins/technet-core"
+    ],
+    "mappings": {
+        "wp-content/plugins/paid-memberships-pro": "./wp-content/plugins/paid-memberships-pro",
+        "wp-content/plugins/the-events-calendar": "./wp-content/plugins/the-events-calendar",
+        "wp-content/plugins/wp-document-revisions": "./wp-content/plugins/wp-document-revisions"
+    },
+    "config": {
+        "WP_DEBUG": true,
+        "WP_DEBUG_LOG": true,
+        "WP_DEBUG_DISPLAY": false
+    }
+}

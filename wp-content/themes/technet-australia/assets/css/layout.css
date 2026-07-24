@@ -1,0 +1,152 @@
+/*
+ * Site chrome + page layout patterns — ported from the inline styles in
+ * ui_kits/marketing-site/*.jsx, ui_kits/conference-microsite/*.jsx and
+ * ui_kits/member-directory/index.html. These aren't reusable "components"
+ * in the design system (no Header/Footer/Hero primitive exists there
+ * either — each page hand-rolls its layout from Button/Card/Badge/Tag), so
+ * they're kept separate from components.css.
+ */
+
+/* Header — Header.jsx */
+.technet-header { background: var(--navy-900); }
+.technet-header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-5);
+	padding-top: var(--space-5);
+	padding-bottom: var(--space-5);
+	flex-wrap: wrap;
+}
+.technet-header__wordmark {
+	color: #fff;
+	font-family: var(--font-sans);
+	font-weight: var(--fw-bold);
+	font-size: 22px;
+	text-decoration: none;
+}
+.technet-header__wordmark-dot { color: var(--green-500); }
+.technet-header__wordmark-sub { font-weight: var(--fw-regular); color: var(--neutral-300); }
+.technet-header__nav-list {
+	display: flex;
+	gap: var(--space-6);
+	font-family: var(--font-sans);
+	font-size: var(--fs-body-sm);
+	color: var(--neutral-200);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	flex-wrap: wrap;
+}
+.technet-header__nav-list a { color: var(--neutral-200); text-decoration: none; }
+.technet-header__nav-list a:hover, .technet-header__nav-list a[aria-current="page"] { color: #fff; }
+
+/* Footer — Footer.jsx */
+.technet-footer { background: var(--navy-900); color: var(--neutral-300); margin-top: var(--space-8); }
+.technet-footer__inner {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: var(--space-4);
+	padding-top: var(--space-6);
+	padding-bottom: var(--space-6);
+	font-family: var(--font-sans);
+	font-size: 13px;
+	flex-wrap: wrap;
+}
+.technet-footer__links { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+.technet-footer__links a { color: var(--neutral-200); }
+
+/* Hero — Home.jsx first section */
+.technet-hero { padding: var(--space-8) var(--space-7); background: var(--surface-sunken); text-align: center; }
+.technet-hero__kicker {
+	font-family: var(--font-mono);
+	font-size: var(--fs-body-sm);
+	color: var(--green-700);
+	letter-spacing: var(--ls-caps);
+	text-transform: uppercase;
+	margin-bottom: var(--space-4);
+}
+.technet-hero__title { font-size: var(--fs-display); max-width: 760px; margin: 0 auto var(--space-5); color: var(--navy-900); }
+.technet-hero__lead { font-size: var(--fs-body-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6); }
+.technet-hero__actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
+
+/* Inverse (navy) hero variant — member-directory index.html top section */
+.technet-hero--inverse { background: var(--navy-900); color: #fff; text-align: left; padding: var(--space-8) var(--space-7); }
+.technet-hero--inverse .technet-hero__kicker { color: var(--green-500); }
+.technet-hero--inverse .technet-hero__title { color: #fff; margin: 0 0 var(--space-4); max-width: 640px; }
+.technet-hero--inverse .technet-hero__lead { color: var(--neutral-300); max-width: 560px; margin: 0 0 var(--space-5); text-align: left; }
+.technet-hero--inverse .technet-hero__actions { justify-content: flex-start; }
+
+/* Three-card grid — Home.jsx "what we do" section */
+.technet-grid-3 {
+	padding: var(--space-6) var(--space-7);
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: var(--space-5);
+	max-width: var(--container-max);
+	margin: 0 auto;
+}
+.technet-grid-3 h3 { font-size: var(--fs-h4); margin: var(--space-3) 0 var(--space-2); }
+.technet-grid-3 p { color: var(--text-secondary); font-size: var(--fs-body-sm); margin: 0; }
+
+@media (max-width: 800px) {
+	.technet-grid-3 { grid-template-columns: 1fr; }
+}
+
+/* Tag row — Home.jsx discipline tags */
+.technet-tag-row { padding: var(--space-7); max-width: var(--container-max); margin: 0 auto; display: flex; gap: var(--space-2); flex-wrap: wrap; }
+
+/* Generic content page — Conference/Forums/NEATTS pages */
+.technet-page { max-width: 1000px; margin: 0 auto; padding: var(--space-7); }
+.technet-page__title { font-size: var(--fs-h1); margin: var(--space-4) 0 var(--space-2); }
+.technet-page__lead { color: var(--text-secondary); font-size: var(--fs-body-lg); max-width: 640px; margin: 0; }
+
+/* Stat card row — ConferencePage.jsx */
+.technet-stat-row { display: flex; gap: var(--space-4); margin: var(--space-6) 0; flex-wrap: wrap; }
+.technet-stat { flex: 1 1 160px; }
+.technet-stat__value { font-family: var(--font-mono); color: var(--green-700); font-size: 22px; }
+.technet-stat__label { font-size: 13px; color: var(--text-secondary); }
+
+/* Vertical list of row-cards — ForumsPage.jsx, SchedulePage.jsx, SpeakersPage.jsx, member directory */
+.technet-list { display: flex; flex-direction: column; gap: var(--space-3); }
+.technet-list--tight { gap: var(--space-2); }
+.technet-list-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); flex-direction: row; }
+.technet-list-row__title { font-weight: var(--fw-semibold); }
+.technet-list-row__meta { font-size: 13px; color: var(--text-secondary); }
+.technet-list-row__time { font-family: var(--font-mono); color: var(--green-700); width: 56px; flex-shrink: 0; }
+
+/* Two-column grid — NeattsPage.jsx, SpeakersPage.jsx */
+.technet-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+@media (max-width: 700px) { .technet-grid-2 { grid-template-columns: 1fr; } }
+
+/* Avatar placeholder circle — no photography per design system readme.md */
+.technet-avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: var(--surface-sunken);
+	border: 1px solid var(--border-subtle);
+	flex-shrink: 0;
+}
+.technet-avatar--sm { width: 40px; height: 40px; }
+
+/* Member directory search row */
+.technet-directory-toolbar { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: var(--space-5); gap: var(--space-4); flex-wrap: wrap; }
+.technet-directory-toolbar h2 { font-size: var(--fs-h3); margin: 0; }
+.technet-directory-search { width: 260px; max-width: 100%; }
+.technet-directory-empty { color: var(--text-secondary); font-size: var(--fs-body-sm); padding: var(--space-5) 0; }
+
+/* Registration / nomination forms — RegisterPage.jsx */
+.technet-form { max-width: 520px; margin: 0 auto; padding: var(--space-6) var(--space-7); }
+.technet-form__title { font-size: var(--fs-h3); margin-bottom: var(--space-5); }
+.technet-form__fields { display: flex; flex-direction: column; gap: var(--space-4); }
+.technet-form__row { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+.technet-form__notice { padding: var(--space-3) var(--space-4); border-radius: var(--radius-sm); margin-bottom: var(--space-5); font-size: var(--fs-body-sm); }
+.technet-form__notice--success { background: var(--state-success-bg); color: var(--state-success); }
+.technet-form__notice--error { background: var(--state-error-bg); color: var(--state-error); }
+
+/* Conference microsite header — MicroHeader.jsx */
+.technet-micro-header { background: var(--navy-900); color: #fff; padding: var(--space-6) var(--space-7); }
+.technet-micro-header__kicker { font-family: var(--font-mono); font-size: 12px; color: var(--green-500); letter-spacing: var(--ls-caps); text-transform: uppercase; margin-bottom: var(--space-2); }
+.technet-micro-header__title { font-size: var(--fs-h1); margin: 0; color: #fff; }

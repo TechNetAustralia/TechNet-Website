@@ -1,0 +1,16 @@
+/*
+Theme Name: TechNet Australia
+Theme URI: https://github.com/technetaustralia/technet-website
+Author: TechNet Australia
+Description: Custom theme for TechNet Australia, ported from the TechNet Australia Design System (Claude Design). Navy/green palette, IBM Plex Sans + Mono, flat colour, boxy 4-12px radii.
+Version: 0.1.0
+Requires at least: 6.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: technet-australia
+*/
+
+/* Actual styles are enqueued from assets/css/ (tokens, base, components) via functions.php
+   so the ported design-system stylesheets (tokens/*.css in the Claude Design project) stay
+   file-for-file recognisable rather than being flattened into this header file. */

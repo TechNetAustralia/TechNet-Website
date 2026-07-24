@@ -1,0 +1,82 @@
+/*
+ * Base resets — ported verbatim from tokens/base.css in the design system,
+ * plus a small amount of WordPress-specific scaffolding (container, screen
+ * reader text, alignment classes) that the design system doesn't need to
+ * define since it isn't a CMS theme.
+ */
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-sans);
+	color: var(--text-primary);
+	background: var(--surface-page);
+	font-size: var(--fs-body);
+	line-height: var(--lh-body);
+}
+
+a {
+	color: var(--text-link);
+	text-decoration: underline;
+}
+
+a:hover {
+	color: var(--text-link-hover);
+}
+
+h1, h2, h3, h4 {
+	font-family: var(--font-sans);
+	font-weight: var(--fw-semibold);
+	line-height: var(--lh-heading);
+	letter-spacing: var(--ls-tight);
+	margin: 0;
+}
+
+code, pre, kbd {
+	font-family: var(--font-mono);
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/* WordPress scaffolding (not part of the design system) */
+
+.technet-container {
+	max-width: var(--container-max);
+	margin: 0 auto;
+	padding-left: var(--space-7);
+	padding-right: var(--space-7);
+}
+
+.screen-reader-text {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	white-space: nowrap;
+}
+
+.screen-reader-text:focus {
+	position: static;
+	width: auto;
+	height: auto;
+	clip: auto;
+	padding: var(--space-2) var(--space-3);
+	background: var(--navy-900);
+	color: #fff;
+	z-index: 100000;
+}
+
+.alignwide {
+	max-width: calc(var(--container-max) + var(--space-8));
+}
+
+.alignfull {
+	max-width: none;
+}

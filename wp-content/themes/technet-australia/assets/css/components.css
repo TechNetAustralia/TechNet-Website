@@ -1,0 +1,182 @@
+/*
+ * Component styles — ported from components/core/* and components/forms/*
+ * in the design system. Each component there is a React function using
+ * inline styles keyed to the same custom properties defined in tokens.css;
+ * here they become classes so inc/components.php can emit plain HTML/PHP
+ * without a JS runtime. Class names are prefixed `tn-` (TechNet).
+ *
+ * Only components actually used by a page template get a PHP helper in
+ * inc/components.php — Switch/Tabs/Dialog/Toast/Tooltip are styled here for
+ * completeness but have no PHP helper yet (see plan: no current design uses
+ * them outside the design-system component gallery itself).
+ */
+
+/* Button — components/core/button/Button.jsx */
+.tn-btn {
+	font-family: var(--font-sans);
+	font-weight: var(--fw-semibold);
+	font-size: var(--fs-body);
+	padding: 10px 20px;
+	border-radius: var(--radius-sm);
+	border: 1px solid transparent;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	transition: background var(--duration-fast) var(--ease-standard), color var(--duration-fast) var(--ease-standard);
+	text-decoration: none;
+}
+
+.tn-btn:disabled,
+.tn-btn[aria-disabled="true"] {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+.tn-btn--sm { padding: 6px 14px; font-size: var(--fs-body-sm); }
+.tn-btn--lg { padding: 14px 28px; }
+
+.tn-btn--primary { background: var(--navy-900); color: #fff; }
+.tn-btn--primary:hover { background: var(--navy-800); color: #fff; }
+
+.tn-btn--accent { background: var(--brand-accent); color: #fff; }
+.tn-btn--accent:hover { background: var(--green-700); color: #fff; }
+
+.tn-btn--secondary { background: var(--surface-card); color: var(--navy-900); border-color: var(--border-default); }
+.tn-btn--secondary:hover { background: var(--surface-sunken); color: var(--navy-900); }
+
+.tn-btn--ghost { background: transparent; color: var(--navy-900); }
+.tn-btn--ghost:hover { background: var(--surface-sunken); color: var(--navy-900); }
+
+/* Card — components/core/card/Card.jsx */
+.tn-card {
+	background: var(--surface-card);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
+	padding: var(--space-5);
+}
+
+.tn-card--flush { padding: 0; }
+.tn-card--row { display: flex; align-items: center; gap: var(--space-4); flex-direction: row; }
+
+/* Badge — components/core/badge/Badge.jsx */
+.tn-badge {
+	font-family: var(--font-sans);
+	font-size: var(--fs-caption);
+	font-weight: var(--fw-semibold);
+	padding: 3px 10px;
+	border-radius: var(--radius-pill);
+	display: inline-block;
+	background: var(--neutral-100);
+	color: var(--neutral-700);
+}
+
+.tn-badge--success { background: var(--state-success-bg); color: var(--state-success); }
+.tn-badge--warning { background: var(--state-warning-bg); color: var(--state-warning); }
+.tn-badge--error { background: var(--state-error-bg); color: var(--state-error); }
+.tn-badge--info { background: var(--state-info-bg); color: var(--state-info); }
+
+/* Tag — components/core/tag/Tag.jsx */
+.tn-tag {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-family: var(--font-mono);
+	font-size: var(--fs-caption);
+	color: var(--navy-800);
+	background: var(--surface-sunken);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-sm);
+	padding: 4px 8px;
+}
+
+.tn-tag__remove { cursor: pointer; color: var(--text-tertiary); }
+
+/* Form field wrapper — components/forms/input, select share this label pattern */
+.tn-field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	font-family: var(--font-sans);
+	font-size: var(--fs-body-sm);
+	color: var(--text-secondary);
+}
+
+.tn-field__error {
+	color: var(--state-error);
+	font-size: var(--fs-caption);
+}
+
+/* Input — components/forms/input/Input.jsx */
+.tn-input {
+	font-family: var(--font-sans);
+	font-size: var(--fs-body);
+	padding: 10px 12px;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border-default);
+	background: var(--surface-card);
+	color: var(--text-primary);
+	outline: none;
+}
+
+.tn-input:focus { border-color: var(--focus-ring); }
+.tn-input--error { border-color: var(--state-error); }
+.tn-input:disabled { background: var(--surface-sunken); }
+
+/* Select — components/forms/select/Select.jsx */
+.tn-select {
+	font-family: var(--font-sans);
+	font-size: var(--fs-body);
+	padding: 10px 12px;
+	border-radius: var(--radius-sm);
+	border: 1px solid var(--border-default);
+	background: var(--surface-card);
+	color: var(--text-primary);
+}
+
+.tn-select:disabled { background: var(--surface-sunken); }
+
+/* Checkbox / Radio — components/forms/checkbox, radio */
+.tn-choice {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-family: var(--font-sans);
+	font-size: var(--fs-body);
+	color: var(--text-primary);
+	cursor: pointer;
+}
+
+.tn-choice input {
+	width: 18px;
+	height: 18px;
+	accent-color: var(--brand-accent);
+}
+
+.tn-choice--disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Switch — components/forms/switch/Switch.jsx (styled only, no PHP helper yet) */
+.tn-switch { position: relative; display: inline-block; width: 40px; height: 22px; }
+.tn-switch input { opacity: 0; width: 0; height: 0; }
+.tn-switch__track {
+	position: absolute; inset: 0; background: var(--neutral-300); border-radius: var(--radius-pill);
+	transition: background var(--duration-fast) var(--ease-standard);
+}
+.tn-switch input:checked + .tn-switch__track { background: var(--brand-accent); }
+.tn-switch__thumb {
+	position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: #fff;
+	transition: transform var(--duration-fast) var(--ease-standard);
+}
+.tn-switch input:checked ~ .tn-switch__thumb { transform: translateX(18px); }
+
+/* Tabs — components/navigation/tabs/Tabs.jsx (styled only, no PHP helper yet) */
+.tn-tabs { display: flex; gap: var(--space-5); border-bottom: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: var(--fs-body-sm); }
+.tn-tabs__item { padding: var(--space-3) 0; color: var(--text-secondary); text-decoration: none; border-bottom: 2px solid transparent; }
+.tn-tabs__item--active, .tn-tabs__item[aria-current="page"] { color: var(--navy-900); border-bottom-color: var(--brand-accent); }
+
+/* Dialog / Toast / Tooltip — styled only, no PHP helper yet (unused by current page designs) */
+.tn-dialog-scrim { position: fixed; inset: 0; background: rgba(11, 31, 48, 0.45); }
+.tn-dialog { background: var(--surface-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-6); }
+.tn-toast { background: var(--navy-900); color: #fff; border-radius: var(--radius-md); box-shadow: var(--shadow-md); padding: var(--space-3) var(--space-4); }
+.tn-tooltip { background: var(--navy-900); color: #fff; border-radius: var(--radius-sm); padding: 4px 8px; font-size: var(--fs-caption); }
