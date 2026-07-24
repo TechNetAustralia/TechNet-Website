@@ -3,7 +3,8 @@
  * Visual site header — ports ui_kits/marketing-site/Header.jsx: navy bar,
  * wordmark ("TechNet.Australia" with a green full stop, per the design
  * system — no real logo was supplied, see readme.md "Iconography"), nav,
- * and a "Join the Google Group" accent CTA.
+ * and an accent CTA button (text/link editable via Appearance -> Customize
+ * -> Header, see inc/customizer.php).
  *
  * @package TechNet_Australia
  */
@@ -25,10 +26,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 		echo technet_button( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- technet_button() escapes internally.
 			array(
-				'label'   => __( 'Join the Google Group', 'technet-australia' ),
+				'label'   => get_theme_mod( 'technet_header_cta_label', 'Join the Google Group' ),
 				'variant' => 'accent',
 				'size'    => 'sm',
-				'href'    => 'https://groups.google.com/',
+				'href'    => get_theme_mod( 'technet_header_cta_url', 'https://groups.google.com/' ),
 			)
 		);
 		?>

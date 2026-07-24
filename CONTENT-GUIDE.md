@@ -112,6 +112,13 @@ text** — a text field, not the Home page — since it's a short label rather
 than body content. Type your change, check the live preview on the right,
 then click **Publish** (top-left) to make it live.
 
+## Changing the header button (top-right of every page)
+
+This is different from the buttons on the Home page — it shows on **every**
+page, not just the homepage, so it lives in its own Customizer section:
+**Appearance → Customize → Header** → **Button text** and **Button link**
+→ **Publish**.
+
 ## Adding conference speakers and schedule sessions
 
 These live under their own admin menu items, not as a page you edit:

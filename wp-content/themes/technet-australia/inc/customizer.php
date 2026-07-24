@@ -21,6 +21,51 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function technet_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
+		'technet_header',
+		array(
+			'title'       => __( 'Header', 'technet-australia' ),
+			'description' => __( 'The button shown top-right on every page (not just the homepage).', 'technet-australia' ),
+			'priority'    => 25,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'technet_header_cta_label',
+		array(
+			'default'           => 'Join the Google Group',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'technet_header_cta_label',
+		array(
+			'label'   => __( 'Button text', 'technet-australia' ),
+			'section' => 'technet_header',
+			'type'    => 'text',
+		)
+	);
+
+	$wp_customize->add_setting(
+		'technet_header_cta_url',
+		array(
+			'default'           => 'https://groups.google.com/',
+			'sanitize_callback' => 'esc_url_raw',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'technet_header_cta_url',
+		array(
+			'label'   => __( 'Button link', 'technet-australia' ),
+			'section' => 'technet_header',
+			'type'    => 'url',
+		)
+	);
+
+	$wp_customize->add_section(
 		'technet_homepage',
 		array(
 			'title'       => __( 'Homepage', 'technet-australia' ),
