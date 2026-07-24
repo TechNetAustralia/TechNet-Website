@@ -27,6 +27,7 @@ class TechNet_CLI_Command {
 	 *     wp technet seed-demo
 	 *
 	 * @when after_wp_load
+	 * @subcommand seed-demo
 	 */
 	public function seed_demo( $args, $assoc_args ) {
 		$this->seed_pages();
