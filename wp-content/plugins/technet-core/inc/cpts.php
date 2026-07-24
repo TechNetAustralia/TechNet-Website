@@ -29,7 +29,7 @@ function technet_register_post_types() {
 			'show_ui'      => true,
 			'show_in_menu' => true,
 			'menu_icon'    => 'dashicons-groups',
-			'supports'     => array( 'title' ),
+			'supports'     => array( 'title', 'thumbnail' ),
 		)
 	);
 

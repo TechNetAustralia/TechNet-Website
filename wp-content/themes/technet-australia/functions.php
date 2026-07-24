@@ -12,6 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'TECHNET_THEME_VERSION', '0.1.0' );
 
 require_once get_template_directory() . '/inc/components.php';
+require_once get_template_directory() . '/inc/customizer.php';
 
 /**
  * Theme setup: supports, nav menus, image sizes.
@@ -137,14 +138,22 @@ function technet_footer_nav() {
 }
 
 /**
- * URL of the homepage hero banner image, or '' if none has been added yet.
- * Checked by filename convention (assets/images/hero-banner.{ext}) rather
- * than a media-library upload, so the hero degrades gracefully — no banner
- * file means no banner markup at all, not a broken image.
+ * URL of the homepage hero banner image, or '' if none has been set.
+ * Prefers the Customizer setting (Appearance -> Customize -> Homepage —
+ * see inc/customizer.php), the CMS-native way to change it. Falls back to
+ * the old assets/images/hero-banner.{ext} filename convention only if no
+ * Customizer image has been set yet, so nothing broke for sites that used
+ * that before this existed. Either way, no image set means no banner
+ * markup at all, not a broken image.
  *
  * @return string
  */
 function technet_hero_banner_url() {
+	$customizer_image = get_theme_mod( 'technet_hero_banner', '' );
+	if ( $customizer_image ) {
+		return $customizer_image;
+	}
+
 	foreach ( array( 'jpg', 'jpeg', 'png', 'webp' ) as $ext ) {
 		$path = get_template_directory() . '/assets/images/hero-banner.' . $ext;
 		if ( file_exists( $path ) ) {

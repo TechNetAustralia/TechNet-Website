@@ -11,7 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
-$hero_banner = technet_hero_banner_url();
+$hero_banner  = technet_hero_banner_url();
+$recent_posts = new WP_Query(
+	array(
+		'post_type'           => 'post',
+		'posts_per_page'      => 3,
+		'post_status'         => 'publish',
+		'ignore_sticky_posts' => true,
+	)
+);
 ?>
 
 <section class="technet-hero<?php echo $hero_banner ? ' technet-hero--has-banner' : ''; ?>"<?php echo $hero_banner ? ' style="--hero-banner-image:url(' . esc_url( $hero_banner ) . ')"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_url() already applied to the dynamic part. ?>>
@@ -65,6 +73,29 @@ $hero_banner = technet_hero_banner_url();
 	endforeach;
 	?>
 </section>
+
+<?php if ( $recent_posts->have_posts() ) : ?>
+<section class="technet-page" style="max-width: var(--container-max);">
+	<h2 style="font-size: var(--fs-h3); margin-bottom: var(--space-5);"><?php esc_html_e( 'Latest updates', 'technet-australia' ); ?></h2>
+	<div class="technet-grid-3">
+		<?php
+		while ( $recent_posts->have_posts() ) :
+			$recent_posts->the_post();
+			$image_url = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
+			$body      = technet_badge( get_the_date(), 'neutral' );
+			$body     .= sprintf(
+				'<h3 style="margin: var(--space-3) 0 var(--space-2);"><a href="%1$s" style="color: inherit; text-decoration: none;">%2$s</a></h3>',
+				esc_url( get_permalink() ),
+				esc_html( get_the_title() )
+			);
+			$body     .= '<p style="color: var(--text-secondary); font-size: 14px; margin: 0;">' . esc_html( wp_trim_words( get_the_excerpt(), 20 ) ) . '</p>';
+			echo technet_media_card( $image_url, get_the_title(), $body ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		endwhile;
+		wp_reset_postdata();
+		?>
+	</div>
+</section>
+<?php endif; ?>
 
 <section class="technet-tag-row">
 	<?php

@@ -60,6 +60,22 @@
 .tn-card--flush { padding: 0; }
 .tn-card--row { display: flex; align-items: center; gap: var(--space-4); flex-direction: row; }
 
+/* Media card — image-topped variant of Card, used for post/speaker/event
+   cards. Not in the original design system (which specified flat colour,
+   no imagery) — added per the site's image-rich direction; see
+   docs/design-changelog.md for the token/component change to reflect back
+   into the Claude Design System project. */
+.tn-card { overflow: hidden; }
+.tn-card--media { display: flex; flex-direction: column; }
+.tn-card__image {
+	display: block;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
+.tn-card__image--placeholder { background: var(--surface-sunken); }
+.tn-card__body { padding: var(--space-5); }
+
 /* Badge — components/core/badge/Badge.jsx */
 .tn-badge {
 	font-family: var(--font-sans);

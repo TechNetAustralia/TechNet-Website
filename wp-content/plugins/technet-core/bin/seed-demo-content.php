@@ -38,6 +38,7 @@ class TechNet_CLI_Command {
 			$this->seed_sessions( $conference_id );
 		}
 		$this->seed_members();
+		$this->seed_posts();
 
 		WP_CLI::success( 'TechNet demo content seeded.' );
 	}
@@ -303,6 +304,63 @@ class TechNet_CLI_Command {
 			}
 		}
 		WP_CLI::log( 'Created sample members.' );
+	}
+
+	/**
+	 * Example "News & Updates" posts — shows what real homepage/blog
+	 * content looks like in TechNet's voice (plain, institutional, no
+	 * hype — see the design system's readme.md "Content fundamentals"),
+	 * and gives editors something concrete to copy the pattern from
+	 * rather than a blank editor. None have a featured image set — that's
+	 * deliberate, so CONTENT-GUIDE.md's "always add a featured image" isn't
+	 * silently contradicted by the example content itself; add one via
+	 * the block editor's Featured Image panel after seeding, to see the
+	 * full image-rich layout end to end.
+	 */
+	private function seed_posts() {
+		$posts = array(
+			array(
+				'title'   => 'Registrations open for TechNet 2027',
+				'excerpt' => 'Registrations are now open for the three-day national conference, hosted this year in Newcastle.',
+				'content' => "Registrations are now open for TechNet 2027, hosted this year in Newcastle. The conference runs across three days and brings together technical and scientific staff from institutions across Australia and New Zealand for talks, workshops and site tours.\n\nFull conference and day passes are both available. Members registering are automatically added to the TechNet Google Group if they aren't already part of it.\n\nSee the conference page for the current schedule and speaker list, and use the registration form to secure a place.",
+				'days_ago' => 2,
+			),
+			array(
+				'title'   => 'NEATTS 2026 nominations now open',
+				'excerpt' => 'Nominate a colleague for the National Excellence Award for Tertiary Technical Staff.',
+				'content' => "Nominations are open for the 2026 National Excellence Award for Tertiary Technical Staff (NEATTS), recognising outstanding contribution by technical and scientific professional staff across member institutions.\n\nAny TechNet member can nominate a colleague. Nominations should outline the nominee's contribution in a few paragraphs — previous winners have been recognised for technical innovation, mentoring, and sustained support for research and teaching over many years.\n\nThe recipient is announced each year at the closing conference dinner. Nominations close ahead of the national conference.",
+				'days_ago' => 5,
+			),
+			array(
+				'title'   => 'Sydney forum added to the 2027 calendar',
+				'excerpt' => 'A new one-day regional forum joins Adelaide and Brisbane on the 2027 calendar.',
+				'content' => "A new one-day forum has been added to the 2027 regional calendar, joining Adelaide and Brisbane. The Sydney forum brings together technical staff from institutions across NSW for a day of talks and networking, closer to home than the national conference.\n\nRegional forums are typically smaller and more informal than the national conference, and are a good starting point for staff who haven't been to a TechNet event before.\n\nDetails and registration will be added to the forums page as they're confirmed.",
+				'days_ago' => 9,
+			),
+			array(
+				'title'   => 'Getting the most out of the TechNet Google Group',
+				'excerpt' => 'The Google Group is the fastest way to reach 540+ technical and scientific staff across the network.',
+				'content' => "The TechNet Google Group is the fastest way to reach 540+ technical and scientific staff across the network — most day-to-day questions and discussions happen there rather than on this site.\n\nA few things worth knowing: search the group before posting, since many questions (equipment recommendations, safety procedures, benchmarking requests) have been asked before. Include your institution and discipline when posting, since context helps people give a useful answer. And keep discussion on-topic for the technical and scientific staff community.\n\nRequest to join from the member directory page if you're not a member yet.",
+				'days_ago' => 14,
+			),
+		);
+
+		foreach ( $posts as $post ) {
+			if ( get_page_by_title( $post['title'], OBJECT, 'post' ) ) {
+				continue;
+			}
+			wp_insert_post(
+				array(
+					'post_type'    => 'post',
+					'post_title'   => $post['title'],
+					'post_excerpt' => $post['excerpt'],
+					'post_content' => $post['content'],
+					'post_status'  => 'publish',
+					'post_date'    => gmdate( 'Y-m-d H:i:s', strtotime( '-' . $post['days_ago'] . ' days' ) ),
+				)
+			);
+		}
+		WP_CLI::log( 'Created example posts.' );
 	}
 
 	/**

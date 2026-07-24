@@ -79,7 +79,7 @@ function technet_get_event_sessions_by_day( $event_id ) {
  * Speakers linked to an event.
  *
  * @param int $event_id
- * @return array<int,array{name:string,role:string,institution:string}>
+ * @return array<int,array{name:string,role:string,institution:string,photo_url:string|false}>
  */
 function technet_get_event_speakers( $event_id ) {
 	$posts = get_posts(
@@ -99,6 +99,7 @@ function technet_get_event_speakers( $event_id ) {
 			'name'        => $post->post_title,
 			'role'        => get_post_meta( $post->ID, '_technet_role', true ),
 			'institution' => get_post_meta( $post->ID, '_technet_institution', true ),
+			'photo_url'   => get_the_post_thumbnail_url( $post->ID, 'medium' ),
 		);
 	}
 	return $speakers;

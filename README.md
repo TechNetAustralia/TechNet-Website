@@ -25,6 +25,14 @@ Nothing here touches production hosting or DNS.
     (via wpackagist)
   - **WP Document Revisions** — institutional document library
 
+## Adding content
+
+If you're writing posts, editing pages, or changing images — not touching
+code — see **[`CONTENT-GUIDE.md`](CONTENT-GUIDE.md)** instead of this file.
+It covers logging into wp-admin, the Pages-vs-Posts distinction, setting
+featured images, changing the homepage banner, and what not to touch.
+Everything below here is for people working on the code/infrastructure.
+
 ## Branches
 
 Day-to-day work happens on **`develop`** — that's what your local checkout
@@ -102,7 +110,7 @@ First-time activation (wp-env's CLI container has WP-CLI preinstalled):
 ```bash
 wp-env run cli -- wp theme activate technet-australia
 wp-env run cli -- wp plugin activate technet-core paid-memberships-pro the-events-calendar wp-document-revisions
-wp-env run cli -- wp technet seed-demo   # sample conference, 3 forums, speakers, sessions, members
+wp-env run cli -- wp technet seed-demo   # sample conference, 3 forums, speakers, sessions, members, 4 example posts
 ```
 
 `wp technet seed-demo` already creates the Conference/Forums/NEATTS/NEATTS
@@ -137,6 +145,13 @@ broken staging site.
 The theme is a hand-port of the [Claude Design System project](https://claude.ai/design)
 — there's no build step or automated sync between the two, so this is a
 manual (but quick) loop each time the design system changes:
+
+> **Currently owed the other direction:** the site's move to an image-rich
+> design (post/hero/speaker photos, a Card media variant) hasn't been
+> reflected back into the design system project yet — writing to it needs
+> a `/design-login` step that isn't available from every session. See
+> [`docs/design-changelog.md`](docs/design-changelog.md) for the exact
+> changes to apply there; delete that file once it's done.
 
 1. **Make the change in the design system first** — at claude.ai/design,
    in the TechNet Australia Design System project (tokens, a component, or

@@ -110,6 +110,35 @@ function technet_card( $content, $args = array() ) {
 }
 
 /**
+ * Media card — image-topped Card variant (not in the original design
+ * system; added for the site's image-rich direction, see
+ * docs/design-changelog.md). Renders a placeholder block instead of the
+ * image when $image_url is empty, so a post/speaker without a featured
+ * image yet still lays out cleanly rather than showing a broken image.
+ *
+ * @param string $image_url
+ * @param string $image_alt
+ * @param string $body_html Already-escaped/rendered inner HTML for the card body.
+ * @param array  $args      { @type string $class }
+ * @return string
+ */
+function technet_media_card( $image_url, $image_alt, $body_html, $args = array() ) {
+	$args    = wp_parse_args( $args, array( 'class' => '' ) );
+	$classes = trim( 'tn-card--media ' . $args['class'] );
+
+	$content = $image_url
+		? sprintf(
+			'<img class="tn-card__image" src="%1$s" alt="%2$s" loading="lazy">',
+			esc_url( $image_url ),
+			esc_attr( $image_alt )
+		)
+		: '<div class="tn-card__image tn-card__image--placeholder"></div>';
+	$content .= '<div class="tn-card__body">' . $body_html . '</div>';
+
+	return technet_card( $content, array( 'flush' => true, 'class' => $classes ) );
+}
+
+/**
  * Badge — ports components/core/badge/Badge.jsx.
  *
  * @param string $label

@@ -125,6 +125,16 @@
 .technet-page__title { font-size: var(--fs-h1); margin: var(--space-4) 0 var(--space-2); }
 .technet-page__lead { color: var(--text-secondary); font-size: var(--fs-body-lg); max-width: 640px; margin: 0; }
 
+/* Single-post featured image banner — image-rich addition, not in the
+   original design system; see docs/design-changelog.md. */
+.technet-post-banner {
+	aspect-ratio: 21 / 9;
+	overflow: hidden;
+	border-radius: var(--radius-md);
+	margin-bottom: var(--space-5);
+}
+.technet-post-banner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
 /* Stat card row — ConferencePage.jsx */
 .technet-stat-row { display: flex; gap: var(--space-4); margin: var(--space-6) 0; flex-wrap: wrap; }
 .technet-stat { flex: 1 1 160px; }
@@ -151,6 +161,7 @@
 	background: var(--surface-sunken);
 	border: 1px solid var(--border-subtle);
 	flex-shrink: 0;
+	object-fit: cover;
 }
 .technet-avatar--sm { width: 40px; height: 40px; }
 

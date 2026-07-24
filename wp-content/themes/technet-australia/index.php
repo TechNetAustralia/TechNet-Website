@@ -16,14 +16,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 get_header();
 ?>
 
-<div class="technet-page">
+<div class="technet-page" style="max-width: var(--container-max);">
 	<?php if ( have_posts() ) : ?>
-		<?php while ( have_posts() ) : the_post(); ?>
-			<article class="technet-page__content" style="margin-bottom: var(--space-7);">
-				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-				<?php the_excerpt(); ?>
-			</article>
-		<?php endwhile; ?>
+		<div class="technet-grid-3">
+			<?php
+			while ( have_posts() ) :
+				the_post();
+				$image_url = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
+				$body      = sprintf(
+					'<h3 style="margin: 0 0 var(--space-2);"><a href="%1$s" style="color: inherit; text-decoration: none;">%2$s</a></h3>',
+					esc_url( get_permalink() ),
+					esc_html( get_the_title() )
+				);
+				$body     .= '<p style="color: var(--text-secondary); font-size: 14px; margin: 0;">' . esc_html( wp_trim_words( get_the_excerpt(), 20 ) ) . '</p>';
+				echo technet_media_card( $image_url, get_the_title(), $body ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			endwhile;
+			?>
+		</div>
 	<?php else : ?>
 		<h1 class="technet-page__title"><?php esc_html_e( 'Nothing found', 'technet-australia' ); ?></h1>
 	<?php endif; ?>

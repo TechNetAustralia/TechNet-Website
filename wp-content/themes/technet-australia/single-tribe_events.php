@@ -92,7 +92,9 @@ while ( have_posts() ) :
 				<div class="technet-grid-2">
 					<?php foreach ( $speakers as $speaker ) : ?>
 						<?php
-						$row  = '<div class="technet-avatar"></div>';
+						$row  = ! empty( $speaker['photo_url'] )
+							? sprintf( '<img class="technet-avatar" src="%1$s" alt="%2$s">', esc_url( $speaker['photo_url'] ), esc_attr( $speaker['name'] ) )
+							: '<div class="technet-avatar"></div>';
 						$row .= '<div><div class="technet-list-row__title">' . esc_html( $speaker['name'] ) . '</div>';
 						$row .= '<div class="technet-list-row__meta">' . esc_html( $speaker['institution'] . ( $speaker['role'] ? ' · ' . $speaker['role'] : '' ) ) . '</div></div>';
 						echo technet_card( $row, array( 'row' => true ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

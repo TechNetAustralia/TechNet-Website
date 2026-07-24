@@ -17,6 +17,9 @@ while ( have_posts() ) :
 	the_post();
 	?>
 	<article class="technet-page">
+		<?php if ( has_post_thumbnail() ) : ?>
+			<div class="technet-post-banner"><?php the_post_thumbnail( 'large' ); ?></div>
+		<?php endif; ?>
 		<?php echo technet_badge( get_the_date(), 'neutral' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		<h1 class="technet-page__title"><?php the_title(); ?></h1>
 		<div class="technet-page__content">
