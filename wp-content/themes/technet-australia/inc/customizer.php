@@ -68,5 +68,24 @@ function technet_customize_register( $wp_customize ) {
 			'type'        => 'url',
 		)
 	);
+
+	$wp_customize->add_setting(
+		'technet_hero_kicker',
+		array(
+			'default'           => 'Since 2000 · 540+ members',
+			'sanitize_callback' => 'sanitize_text_field',
+			'transport'         => 'refresh',
+		)
+	);
+
+	$wp_customize->add_control(
+		'technet_hero_kicker',
+		array(
+			'label'       => __( 'Hero eyebrow text', 'technet-australia' ),
+			'description' => __( 'The small line above the homepage headline (e.g. "Since 2000 · 540+ members"). Kept here rather than on the Home page since it\'s a short label, not body content.', 'technet-australia' ),
+			'section'     => 'technet_homepage',
+			'type'        => 'text',
+		)
+	);
 }
 add_action( 'customize_register', 'technet_customize_register' );

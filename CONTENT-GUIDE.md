@@ -104,6 +104,14 @@ everywhere else on the site.)*
 If you leave this empty, the hero just shows as a plain flat-colour section
 — no broken image, nothing looks wrong either way.
 
+## Changing the small line above the headline
+
+The short mono-style label above the homepage heading (e.g. "Since 2000 ·
+540+ members") lives in **Appearance → Customize → Homepage → Hero eyebrow
+text** — a text field, not the Home page — since it's a short label rather
+than body content. Type your change, check the live preview on the right,
+then click **Publish** (top-left) to make it live.
+
 ## Adding conference speakers and schedule sessions
 
 These live under their own admin menu items, not as a page you edit:

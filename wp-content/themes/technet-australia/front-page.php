@@ -33,7 +33,7 @@ $home_page_content = $home_page ? apply_filters( 'the_content', $home_page->post
 ?>
 
 <section class="technet-hero<?php echo $hero_banner ? ' technet-hero--has-banner' : ''; ?>"<?php echo $hero_banner ? ' style="--hero-banner-image:url(' . esc_url( $hero_banner ) . ')"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_url() already applied to the dynamic part. ?>>
-	<div class="technet-hero__kicker">Since 2000 &middot; 540+ members</div>
+	<div class="technet-hero__kicker"><?php echo esc_html( get_theme_mod( 'technet_hero_kicker', 'Since 2000 · 540+ members' ) ); ?></div>
 	<?php if ( trim( wp_strip_all_tags( $home_page_content ) ) ) : ?>
 		<div class="technet-hero__editable"><?php echo $home_page_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the_content filter already sanitizes/renders blocks. ?></div>
 	<?php else : ?>
