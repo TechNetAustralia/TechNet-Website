@@ -124,6 +124,24 @@ function technet_footer_nav() {
 }
 
 /**
+ * URL of the homepage hero banner image, or '' if none has been added yet.
+ * Checked by filename convention (assets/images/hero-banner.{ext}) rather
+ * than a media-library upload, so the hero degrades gracefully — no banner
+ * file means no banner markup at all, not a broken image.
+ *
+ * @return string
+ */
+function technet_hero_banner_url() {
+	foreach ( array( 'jpg', 'jpeg', 'png', 'webp' ) as $ext ) {
+		$path = get_template_directory() . '/assets/images/hero-banner.' . $ext;
+		if ( file_exists( $path ) ) {
+			return get_template_directory_uri() . '/assets/images/hero-banner.' . $ext;
+		}
+	}
+	return '';
+}
+
+/**
  * True while PMP considers the current user an active member of the given
  * level (or any level if $level_id is null). Returns false gracefully if
  * Paid Memberships Pro isn't active, so templates can degrade to a public

@@ -10,9 +10,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
+
+$hero_banner = technet_hero_banner_url();
 ?>
 
-<section class="technet-hero">
+<section class="technet-hero<?php echo $hero_banner ? ' technet-hero--has-banner' : ''; ?>"<?php echo $hero_banner ? ' style="--hero-banner-image:url(' . esc_url( $hero_banner ) . ')"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_url() already applied to the dynamic part. ?>>
 	<div class="technet-hero__kicker">Since 2000 &middot; 540+ members</div>
 	<h1 class="technet-hero__title">Connecting technical &amp; scientific staff across Australian and NZ tertiary institutions</h1>
 	<p class="technet-hero__lead">TechNet is the national network for the people who keep teaching and research running &mdash; across arts, science, medicine and engineering.</p>

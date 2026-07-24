@@ -11,9 +11,9 @@ if ! command -v git &> /dev/null; then
 	exit 1
 fi
 
-echo "Checking out main and pulling the latest changes..."
-git checkout main
-git pull origin main
+echo "Checking out develop and pulling the latest changes..."
+git checkout develop
+git pull origin develop
 pull_status=$?
 
 echo ""

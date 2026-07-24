@@ -25,6 +25,15 @@ Nothing here touches production hosting or DNS.
     (via wpackagist)
   - **WP Document Revisions** — institutional document library
 
+## Branches
+
+Day-to-day work happens on **`develop`** — that's what your local checkout
+tracks and what `Update Site.command` pulls. Routine changes (design tweaks,
+content templates, small fixes) get pushed straight to `develop`, no
+PR/merge step needed each time. **`main`** is a slower-moving, reviewed
+snapshot — `develop` gets merged into it periodically (a stable checkpoint,
+or before ever considering a production cutover), not on every change.
+
 ## Daily workflow (start here)
 
 Once you've done the one-time [local setup](#local-setup) below, this is all
@@ -77,6 +86,9 @@ One-time setup on a new machine. Requires PHP 8.2+, [Composer](https://getcompos
 [Node.js](https://nodejs.org) 20+, and Docker (for `@wordpress/env`).
 
 ```bash
+git clone https://github.com/TechNetAustralia/TechNet-Website.git
+cd TechNet-Website
+git checkout develop              # this is the branch to work from — see "Branches" above
 composer install                 # pulls PMP / The Events Calendar / WP Document Revisions
 npm install -g @wordpress/env    # one-off, or use `npx @wordpress/env` below
 wp-env start                     # boots WordPress + MySQL in Docker, mounts theme + plugins
@@ -146,7 +158,9 @@ manual (but quick) loop each time the design system changes:
 3. **Preview locally** — same loop as any other change: save, hard-refresh
    `http://localhost:8888` (see [Daily workflow](#daily-workflow-start-here)
    above; `wp-env start` first if it's not already running).
-4. **Commit and PR** as normal.
+4. **Commit** — routine changes go straight to `develop` (see
+   [Branches](#branches)), so once it's pushed, `Update Site.command` is all
+   you need to get it locally.
 
 For anything more involved than a token tweak — a whole new component, a
 new page in a UI kit — it's worth asking Claude to summarize the diff

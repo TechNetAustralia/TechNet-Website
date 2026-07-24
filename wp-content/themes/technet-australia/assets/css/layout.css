@@ -58,7 +58,30 @@
 .technet-footer__links a { color: var(--neutral-200); }
 
 /* Hero — Home.jsx first section */
-.technet-hero { padding: var(--space-8) var(--space-7); background: var(--surface-sunken); text-align: center; }
+.technet-hero {
+	padding: var(--space-9) var(--space-7);
+	min-height: 460px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background: var(--surface-sunken);
+	text-align: center;
+}
+
+/* Optional banner-image variant — only applied when a real image exists at
+   assets/images/hero-banner.{jpg,jpeg,png,webp}; see technet_hero_banner_url()
+   in functions.php. The design system's brand guidelines call for flat
+   colour only (no photography was supplied when it was authored) — this is
+   a deliberate, TechNet-requested departure from that, not an oversight. */
+.technet-hero--has-banner {
+	background-image: linear-gradient(rgba(11, 31, 48, 0.62), rgba(11, 31, 48, 0.62)), var(--hero-banner-image);
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+.technet-hero--has-banner .technet-hero__title { color: #fff; }
+.technet-hero--has-banner .technet-hero__lead { color: var(--neutral-200); }
+.technet-hero--has-banner .technet-hero__kicker { color: var(--green-500); }
 .technet-hero__kicker {
 	font-family: var(--font-mono);
 	font-size: var(--fs-body-sm);
