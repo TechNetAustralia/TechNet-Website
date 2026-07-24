@@ -84,6 +84,7 @@
 .technet-hero--has-banner .technet-hero__kicker { color: var(--green-500); }
 .technet-hero--has-banner .technet-hero__editable :is(h1, h2, h3) { color: #fff; }
 .technet-hero--has-banner .technet-hero__editable p { color: var(--neutral-200); }
+.technet-hero--has-banner .technet-hero__editable .wp-block-button.is-style-outline .wp-block-button__link { border-color: rgba(255, 255, 255, 0.4); color: #fff; }
 .technet-hero__kicker {
 	font-family: var(--font-mono);
 	font-size: var(--fs-body-sm);
@@ -102,6 +103,28 @@
 .technet-hero__editable :is(h1, h2, h3) { font-size: var(--fs-display); max-width: 760px; margin: 0 auto var(--space-5); color: var(--navy-900); }
 .technet-hero__editable p { font-size: var(--fs-body-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6); }
 .technet-hero__editable > *:last-child { margin-bottom: 0; }
+
+/* Native WP Buttons block, styled to match .tn-btn — lets editors add/
+   edit/remove hero buttons from the block editor instead of them being
+   hardcoded PHP. Core's "Fill" style (default) reads as our accent
+   button; the "Outline" style (pick it from the block toolbar) reads as
+   our secondary button. */
+.technet-hero__editable .wp-block-buttons { gap: var(--space-3); margin-top: var(--space-2); }
+.technet-hero__editable .wp-block-button__link {
+	font-family: var(--font-sans);
+	font-weight: var(--fw-semibold);
+	font-size: var(--fs-body);
+	padding: 10px 20px;
+	border-radius: var(--radius-sm);
+	background: var(--brand-accent);
+	color: #fff;
+	text-decoration: none;
+}
+.technet-hero__editable .wp-block-button.is-style-outline .wp-block-button__link {
+	background: transparent;
+	border: 1px solid var(--border-default);
+	color: var(--navy-900);
+}
 .technet-hero__actions { display: flex; gap: var(--space-3); justify-content: center; flex-wrap: wrap; }
 
 /* Inverse (navy) hero variant — member-directory index.html top section */

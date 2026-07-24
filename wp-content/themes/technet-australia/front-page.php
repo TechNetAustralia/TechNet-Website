@@ -39,25 +39,25 @@ $home_page_content = $home_page ? apply_filters( 'the_content', $home_page->post
 	<?php else : ?>
 		<h1 class="technet-hero__title">Connecting technical &amp; scientific staff across Australian and NZ tertiary institutions</h1>
 		<p class="technet-hero__lead">TechNet is the national network for the people who keep teaching and research running &mdash; across arts, science, medicine and engineering.</p>
+		<div class="technet-hero__actions">
+			<?php
+			echo technet_button( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				array(
+					'label'   => __( "This year's conference", 'technet-australia' ),
+					'variant' => 'accent',
+					'href'    => get_theme_mod( 'technet_conference_url', 'https://www.technetconference2026.com/' ),
+				)
+			);
+			echo technet_button( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				array(
+					'label'   => __( 'Join the Google Group', 'technet-australia' ),
+					'variant' => 'secondary',
+					'href'    => 'https://groups.google.com/',
+				)
+			);
+			?>
+		</div>
 	<?php endif; ?>
-	<div class="technet-hero__actions">
-		<?php
-		echo technet_button( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			array(
-				'label'   => __( "This year's conference", 'technet-australia' ),
-				'variant' => 'accent',
-				'href'    => get_theme_mod( 'technet_conference_url', 'https://www.technetconference2026.com/' ),
-			)
-		);
-		echo technet_button( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			array(
-				'label'   => __( 'Join the Google Group', 'technet-australia' ),
-				'variant' => 'secondary',
-				'href'    => 'https://groups.google.com/',
-			)
-		);
-		?>
-	</div>
 </section>
 
 <section class="technet-grid-3">

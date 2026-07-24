@@ -62,8 +62,8 @@ function technet_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'technet_conference_url',
 		array(
-			'label'       => __( "'This year's conference' button link", 'technet-australia' ),
-			'description' => __( 'Where the homepage accent button goes — the external conference site if there is one this year, or leave empty to link to the built-in /conference/ page.', 'technet-australia' ),
+			'label'       => __( "Fallback: 'This year's conference' button link", 'technet-australia' ),
+			'description' => __( 'Only used if the Home page (Pages -> Home) has no content yet, or as the starting link when Home is first created by wp technet seed-demo. Once the Home page has its own buttons, edit the link there instead — Pages -> Home -> click the button -> link icon.', 'technet-australia' ),
 			'section'     => 'technet_homepage',
 			'type'        => 'url',
 		)

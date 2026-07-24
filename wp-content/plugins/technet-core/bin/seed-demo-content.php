@@ -93,15 +93,32 @@ class TechNet_CLI_Command {
 	 */
 	private function seed_home_page() {
 		$existing = get_page_by_title( 'Home', OBJECT, 'page' );
+
 		if ( $existing ) {
 			$home_id = $existing->ID;
+			// Migration for a Home page seeded before buttons were part of
+			// this content: append the buttons block if missing, without
+			// touching any text already edited.
+			if ( ! has_block( 'core/buttons', $existing->post_content ) ) {
+				wp_update_post(
+					array(
+						'ID'           => $home_id,
+						'post_content' => $existing->post_content . "\n\n" . $this->home_buttons_block(),
+					)
+				);
+				WP_CLI::log( 'Added buttons block to the existing Home page.' );
+			}
 		} else {
+			$content = "<!-- wp:heading {\"level\":1} -->\n<h1>Connecting technical &amp; scientific staff across Australian and NZ tertiary institutions</h1>\n<!-- /wp:heading -->\n\n"
+				. "<!-- wp:paragraph -->\n<p>TechNet is the national network for the people who keep teaching and research running — across arts, science, medicine and engineering.</p>\n<!-- /wp:paragraph -->\n\n"
+				. $this->home_buttons_block();
+
 			$home_id = wp_insert_post(
 				array(
 					'post_type'    => 'page',
 					'post_title'   => 'Home',
 					'post_status'  => 'publish',
-					'post_content' => "<!-- wp:heading {\"level\":1} -->\n<h1>Connecting technical &amp; scientific staff across Australian and NZ tertiary institutions</h1>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>TechNet is the national network for the people who keep teaching and research running — across arts, science, medicine and engineering.</p>\n<!-- /wp:paragraph -->",
+					'post_content' => $content,
 				)
 			);
 			WP_CLI::log( 'Created page: Home' );
@@ -111,6 +128,28 @@ class TechNet_CLI_Command {
 			update_option( 'show_on_front', 'page' );
 			update_option( 'page_on_front', $home_id );
 		}
+	}
+
+	/**
+	 * Gutenberg Buttons block markup for the Home page's two hero buttons,
+	 * so editors can change label/link/add-or-remove buttons the same way
+	 * as any other block content, instead of them being hardcoded PHP.
+	 *
+	 * @return string
+	 */
+	private function home_buttons_block() {
+		$conference_url = get_theme_mod( 'technet_conference_url', 'https://www.technetconference2026.com/' );
+
+		return '<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->'
+			. '<div class="wp-block-buttons">'
+			. '<!-- wp:button -->'
+			. '<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="' . esc_url( $conference_url ) . '">This year&#8217;s conference</a></div>'
+			. '<!-- /wp:button -->'
+			. '<!-- wp:button {"className":"is-style-outline"} -->'
+			. '<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="https://groups.google.com/">Join the Google Group</a></div>'
+			. '<!-- /wp:button -->'
+			. '</div>'
+			. '<!-- /wp:buttons -->';
 	}
 
 	/**

@@ -76,11 +76,18 @@ the page editor content is mainly used for the intro text. If you're not
 sure whether a page is "fully editable" or "partly automatic," ask before
 assuming a text change will show up somewhere it isn't.
 
-**The homepage headline and intro paragraph work the same way** — edit
-them from **Pages → Home**, exactly like any other page. That page doesn't
-have its own web address (it feeds into the homepage design rather than
-being a page you'd visit directly), but editing it works identically to
-every other page: click in, type, hit Update.
+**The homepage headline, intro paragraph, and the two buttons underneath it
+all work the same way** — edit them from **Pages → Home**, exactly like any
+other page. That page doesn't have its own web address (it feeds into the
+homepage design rather than being a page you'd visit directly), but editing
+it works identically to every other page: click in, type, hit Update.
+
+The buttons are a **Buttons block** — click on one to edit its text, or
+click the link icon in the block toolbar to change where it goes. You can
+also add or remove buttons the normal block-editor way (select the block,
+`⋮` menu, or just delete one and use `+` to add a new one). The first
+button uses the default ("Fill") style; the second uses "Outline" — pick
+either style from the block toolbar's style panel if you add a new one.
 
 ## Changing the homepage banner image
 
@@ -90,12 +97,6 @@ to make it live.
 
 If you leave this empty, the hero just shows as a plain flat-colour section
 — no broken image, nothing looks wrong either way.
-
-**Same panel** (Appearance → Customize → Homepage) also has *"'This year's
-conference' button link"* — where the accent button on the homepage goes.
-Point it at an external conference site if there's a dedicated one this
-year, or leave it empty to link to the site's own `/conference/` page.
-Update this each year when the conference site changes.
 
 ## Adding conference speakers and schedule sessions
 
