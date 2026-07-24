@@ -139,16 +139,28 @@ function technet_footer_nav() {
 
 /**
  * URL of the homepage hero banner image, or '' if none has been set.
- * Prefers the Customizer setting (Appearance -> Customize -> Homepage —
- * see inc/customizer.php), the CMS-native way to change it. Falls back to
- * the old assets/images/hero-banner.{ext} filename convention only if no
- * Customizer image has been set yet, so nothing broke for sites that used
- * that before this existed. Either way, no image set means no banner
- * markup at all, not a broken image.
+ * Checked in order:
+ *   1. The Home page's own Featured Image (Pages -> Home -> Featured
+ *      Image) — the most discoverable option, since it's the exact same
+ *      pattern editors already use for posts/speakers.
+ *   2. The Customizer setting (Appearance -> Customize -> Homepage —
+ *      see inc/customizer.php), as an alternative/override.
+ *   3. The old assets/images/hero-banner.{ext} filename convention, kept
+ *      only so nothing broke for whatever was already set that way.
+ * No image set at any level means no banner markup at all, not a broken
+ * image.
  *
  * @return string
  */
 function technet_hero_banner_url() {
+	$home_page_id = (int) get_option( 'page_on_front' );
+	if ( $home_page_id && has_post_thumbnail( $home_page_id ) ) {
+		$thumbnail_url = get_the_post_thumbnail_url( $home_page_id, 'full' );
+		if ( $thumbnail_url ) {
+			return $thumbnail_url;
+		}
+	}
+
 	$customizer_image = get_theme_mod( 'technet_hero_banner', '' );
 	if ( $customizer_image ) {
 		return $customizer_image;

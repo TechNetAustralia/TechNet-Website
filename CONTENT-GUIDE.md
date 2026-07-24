@@ -91,9 +91,15 @@ either style from the block toolbar's style panel if you add a new one.
 
 ## Changing the homepage banner image
 
-**Appearance → Customize → Homepage** → **Hero banner image** → upload or
-select an image → you'll see a live preview → click **Publish** (top-left)
-to make it live.
+Same as setting a featured image on a post: **Pages → Home** → **Featured
+Image** panel (right sidebar) → **Set featured image** → upload or select →
+**Update**. It appears behind the homepage headline automatically, with a
+dark overlay so the text stays readable over any photo.
+
+*(There's also an image field under Appearance → Customize → Homepage —
+that's an older/alternative way to set the same thing, but the Featured
+Image on the Home page is the one to use; it's the same pattern as
+everywhere else on the site.)*
 
 If you leave this empty, the hero just shows as a plain flat-colour section
 — no broken image, nothing looks wrong either way.
