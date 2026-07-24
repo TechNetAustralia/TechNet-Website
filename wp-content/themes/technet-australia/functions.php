@@ -35,20 +35,33 @@ function technet_setup() {
 add_action( 'after_setup_theme', 'technet_setup' );
 
 /**
+ * File-modification-time version string for a theme asset, so every save
+ * auto-busts browser cache instead of relying on someone remembering to
+ * bump TECHNET_THEME_VERSION by hand.
+ *
+ * @param string $relative_path e.g. 'assets/css/tokens.css'.
+ * @return string
+ */
+function technet_asset_version( $relative_path ) {
+	$path = get_template_directory() . '/' . ltrim( $relative_path, '/' );
+	return file_exists( $path ) ? (string) filemtime( $path ) : TECHNET_THEME_VERSION;
+}
+
+/**
  * Enqueue the ported design-system stylesheets in dependency order, plus
  * page-specific scripts (currently just the member directory live filter).
  */
 function technet_enqueue_assets() {
 	$theme_uri = get_template_directory_uri();
 
-	wp_enqueue_style( 'technet-tokens', $theme_uri . '/assets/css/tokens.css', array(), TECHNET_THEME_VERSION );
-	wp_enqueue_style( 'technet-base', $theme_uri . '/assets/css/base.css', array( 'technet-tokens' ), TECHNET_THEME_VERSION );
-	wp_enqueue_style( 'technet-components', $theme_uri . '/assets/css/components.css', array( 'technet-tokens' ), TECHNET_THEME_VERSION );
-	wp_enqueue_style( 'technet-layout', $theme_uri . '/assets/css/layout.css', array( 'technet-tokens', 'technet-components' ), TECHNET_THEME_VERSION );
-	wp_enqueue_style( 'technet-style', $theme_uri . '/style.css', array( 'technet-tokens', 'technet-base', 'technet-components', 'technet-layout' ), TECHNET_THEME_VERSION );
+	wp_enqueue_style( 'technet-tokens', $theme_uri . '/assets/css/tokens.css', array(), technet_asset_version( 'assets/css/tokens.css' ) );
+	wp_enqueue_style( 'technet-base', $theme_uri . '/assets/css/base.css', array( 'technet-tokens' ), technet_asset_version( 'assets/css/base.css' ) );
+	wp_enqueue_style( 'technet-components', $theme_uri . '/assets/css/components.css', array( 'technet-tokens' ), technet_asset_version( 'assets/css/components.css' ) );
+	wp_enqueue_style( 'technet-layout', $theme_uri . '/assets/css/layout.css', array( 'technet-tokens', 'technet-components' ), technet_asset_version( 'assets/css/layout.css' ) );
+	wp_enqueue_style( 'technet-style', $theme_uri . '/style.css', array( 'technet-tokens', 'technet-base', 'technet-components', 'technet-layout' ), technet_asset_version( 'style.css' ) );
 
 	if ( is_page_template( 'page-member-directory.php' ) ) {
-		wp_enqueue_script( 'technet-member-directory', $theme_uri . '/assets/js/member-directory.js', array(), TECHNET_THEME_VERSION, true );
+		wp_enqueue_script( 'technet-member-directory', $theme_uri . '/assets/js/member-directory.js', array(), technet_asset_version( 'assets/js/member-directory.js' ), true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'technet_enqueue_assets' );
