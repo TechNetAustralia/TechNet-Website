@@ -76,6 +76,12 @@ the page editor content is mainly used for the intro text. If you're not
 sure whether a page is "fully editable" or "partly automatic," ask before
 assuming a text change will show up somewhere it isn't.
 
+**The homepage headline and intro paragraph work the same way** — edit
+them from **Pages → Home**, exactly like any other page. That page doesn't
+have its own web address (it feeds into the homepage design rather than
+being a page you'd visit directly), but editing it works identically to
+every other page: click in, type, hit Update.
+
 ## Changing the homepage banner image
 
 **Appearance → Customize → Homepage** → **Hero banner image** → upload or

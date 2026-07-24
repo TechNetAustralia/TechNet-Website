@@ -1,6 +1,8 @@
 <?php
 /**
- * Home — ports ui_kits/marketing-site/Home.jsx.
+ * Home — ports ui_kits/marketing-site/Home.jsx. Hero headline/lead text is
+ * editable via the "Home" page (Pages -> Home) rather than hardcoded here;
+ * see the $home_page_content fallback logic below.
  *
  * @package TechNet_Australia
  */
@@ -20,12 +22,24 @@ $recent_posts = new WP_Query(
 		'ignore_sticky_posts' => true,
 	)
 );
+
+// Editable hero headline/lead — pulled from the "Home" page (Pages -> Home
+// in wp-admin) so it's editable like any other page, instead of hardcoded
+// here. Falls back to the original copy if that page doesn't exist yet or
+// is empty, so this never renders blank.
+$home_page_id      = (int) get_option( 'page_on_front' );
+$home_page         = $home_page_id ? get_post( $home_page_id ) : get_page_by_path( 'home' );
+$home_page_content = $home_page ? apply_filters( 'the_content', $home_page->post_content ) : '';
 ?>
 
 <section class="technet-hero<?php echo $hero_banner ? ' technet-hero--has-banner' : ''; ?>"<?php echo $hero_banner ? ' style="--hero-banner-image:url(' . esc_url( $hero_banner ) . ')"' : ''; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_url() already applied to the dynamic part. ?>>
 	<div class="technet-hero__kicker">Since 2000 &middot; 540+ members</div>
-	<h1 class="technet-hero__title">Connecting technical &amp; scientific staff across Australian and NZ tertiary institutions</h1>
-	<p class="technet-hero__lead">TechNet is the national network for the people who keep teaching and research running &mdash; across arts, science, medicine and engineering.</p>
+	<?php if ( trim( wp_strip_all_tags( $home_page_content ) ) ) : ?>
+		<div class="technet-hero__editable"><?php echo $home_page_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- the_content filter already sanitizes/renders blocks. ?></div>
+	<?php else : ?>
+		<h1 class="technet-hero__title">Connecting technical &amp; scientific staff across Australian and NZ tertiary institutions</h1>
+		<p class="technet-hero__lead">TechNet is the national network for the people who keep teaching and research running &mdash; across arts, science, medicine and engineering.</p>
+	<?php endif; ?>
 	<div class="technet-hero__actions">
 		<?php
 		echo technet_button( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

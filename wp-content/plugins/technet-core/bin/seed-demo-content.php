@@ -79,9 +79,37 @@ class TechNet_CLI_Command {
 			WP_CLI::log( "Created page: {$title}" );
 		}
 
-		$front = get_option( 'page_on_front' );
-		if ( ! $front ) {
-			update_option( 'show_on_front', 'posts' ); // front-page.php in this theme handles is_front_page() regardless.
+		$this->seed_home_page();
+	}
+
+	/**
+	 * "Home" page — supplies the editable headline/lead text that
+	 * front-page.php renders inside the hero. No page template is
+	 * assigned (front-page.php always wins for the homepage regardless of
+	 * Reading settings), this page just holds editable content for it to
+	 * pull in. Also sets it as the site's static front page, so /home/
+	 * canonically redirects to / and "View Page" in wp-admin behaves
+	 * sensibly.
+	 */
+	private function seed_home_page() {
+		$existing = get_page_by_title( 'Home', OBJECT, 'page' );
+		if ( $existing ) {
+			$home_id = $existing->ID;
+		} else {
+			$home_id = wp_insert_post(
+				array(
+					'post_type'    => 'page',
+					'post_title'   => 'Home',
+					'post_status'  => 'publish',
+					'post_content' => "<!-- wp:heading {\"level\":1} -->\n<h1>Connecting technical &amp; scientific staff across Australian and NZ tertiary institutions</h1>\n<!-- /wp:heading -->\n\n<!-- wp:paragraph -->\n<p>TechNet is the national network for the people who keep teaching and research running — across arts, science, medicine and engineering.</p>\n<!-- /wp:paragraph -->",
+				)
+			);
+			WP_CLI::log( 'Created page: Home' );
+		}
+
+		if ( $home_id && ! is_wp_error( $home_id ) ) {
+			update_option( 'show_on_front', 'page' );
+			update_option( 'page_on_front', $home_id );
 		}
 	}
 
