@@ -79,10 +79,10 @@
 	background-position: center;
 	color: #fff;
 }
-.technet-hero--has-banner .technet-hero__title { color: #fff; }
+.technet-hero--has-banner .technet-hero__title { color: var(--pink-600); }
 .technet-hero--has-banner .technet-hero__lead { color: var(--neutral-200); }
 .technet-hero--has-banner .technet-hero__kicker { color: var(--green-500); }
-.technet-hero--has-banner .technet-hero__editable :is(h1, h2, h3) { color: #fff; }
+.technet-hero--has-banner .technet-hero__editable :is(h1, h2, h3) { color: var(--pink-600); }
 .technet-hero--has-banner .technet-hero__editable p { color: var(--neutral-200); }
 .technet-hero--has-banner .technet-hero__editable .wp-block-button.is-style-outline .wp-block-button__link { border-color: rgba(255, 255, 255, 0.4); color: #fff; }
 .technet-hero__kicker {
@@ -93,14 +93,14 @@
 	text-transform: uppercase;
 	margin-bottom: var(--space-4);
 }
-.technet-hero__title { font-size: var(--fs-display); max-width: 760px; margin: 0 auto var(--space-5); color: var(--navy-900); }
+.technet-hero__title { font-size: var(--fs-display); max-width: 760px; margin: 0 auto var(--space-5); color: var(--pink-600); }
 .technet-hero__lead { font-size: var(--fs-body-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6); }
 
 /* Styles whatever block content lands here from the editable "Home" page
    (see front-page.php) to match .technet-hero__title / __lead above,
    since editors write plain Heading/Paragraph blocks rather than picking
    these classes themselves. */
-.technet-hero__editable :is(h1, h2, h3) { font-size: var(--fs-display); max-width: 760px; margin: 0 auto var(--space-5); color: var(--navy-900); }
+.technet-hero__editable :is(h1, h2, h3) { font-size: var(--fs-display); max-width: 760px; margin: 0 auto var(--space-5); color: var(--pink-600); }
 .technet-hero__editable p { font-size: var(--fs-body-lg); color: var(--text-secondary); max-width: 600px; margin: 0 auto var(--space-6); }
 .technet-hero__editable > *:last-child { margin-bottom: 0; }
 
