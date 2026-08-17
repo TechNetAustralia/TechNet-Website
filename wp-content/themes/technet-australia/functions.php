@@ -79,7 +79,7 @@ function technet_primary_nav() {
 				'theme_location' => 'primary',
 				'container'      => false,
 				'menu_class'     => 'technet-header__nav-list',
-				'depth'          => 1,
+				'depth'          => 2,
 			)
 		);
 		return;
