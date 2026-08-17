@@ -40,7 +40,42 @@
 }
 .technet-header__nav-list a { color: var(--neutral-200); text-decoration: none; }
 .technet-header__nav-list a:hover, .technet-header__nav-list a[aria-current="page"] { color: #fff; }
-
+.technet-header__nav-list li { position: relative; }
+.technet-header__nav-list .menu-item-has-children > a::after {
+	content: '';
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	margin-left: var(--space-1);
+	border-right: 1px solid currentColor;
+	border-bottom: 1px solid currentColor;
+	transform: translateY(-2px) rotate(45deg);
+}
+.technet-header__nav-list .sub-menu {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 20;
+	min-width: 200px;
+	margin: var(--space-2) 0 0;
+	padding: var(--space-2) 0;
+	list-style: none;
+	background: var(--navy-900);
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	border-radius: var(--radius-sm);
+	box-shadow: var(--shadow-md);
+}
+.technet-header__nav-list li:hover > .sub-menu,
+.technet-header__nav-list li:focus-within > .sub-menu {
+	display: block;
+}
+.technet-header__nav-list .sub-menu a {
+	display: block;
+	padding: var(--space-2) var(--space-4);
+	white-space: nowrap;
+}
+.technet-header__nav-list .sub-menu a:hover { background: rgba(255, 255, 255, 0.08); }
 /* Footer — Footer.jsx */
 .technet-footer { background: var(--navy-900); color: var(--neutral-300); margin-top: var(--space-8); }
 .technet-footer__inner {
