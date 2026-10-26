@@ -15,8 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <header class="technet-header">
 	<div class="technet-header__inner technet-container">
-		<a class="technet-header__wordmark" href="<?php echo esc_url( home_url( '/' ) ); ?>">
-			TechNet<span class="technet-header__wordmark-dot">.</span><span class="technet-header__wordmark-sub">Australia</span>
+				<a class="technet-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+			<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo-dark.png' ); ?>" alt="<?php esc_attr_e( 'TechNet Australia', 'technet-australia' ); ?>" width="326" height="104" />
 		</a>
 
 		<nav class="technet-header__nav" aria-label="<?php esc_attr_e( 'Primary', 'technet-australia' ); ?>">
