@@ -48,7 +48,7 @@
 	--brand-accent: var(--green-600);
 	--surface-page: var(--neutral-50);
 	--surface-card: var(--neutral-0);
-	--surface-sunken: var(--neutral-100);
+	--surface-sunken: #d9e7ec;
 	--surface-inverse: var(--navy-900);
 	--border-subtle: var(--neutral-200);
 	--border-default: var(--neutral-300);
