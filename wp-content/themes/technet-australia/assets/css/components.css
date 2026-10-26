@@ -40,7 +40,7 @@
 .tn-btn--primary:hover { background: var(--navy-800); color: #fff; }
 
 .tn-btn--accent { background: var(--brand-accent); color: #fff; }
-.tn-btn--accent:hover { background: var(--green-700); color: #fff; }
+.tn-btn--accent:hover { background: var(--green-700); color: #fff; filter: brightness(1.15); }
 
 .tn-btn--secondary { background: var(--surface-card); color: var(--navy-900); border-color: var(--border-default); }
 .tn-btn--secondary:hover { background: var(--surface-sunken); color: var(--navy-900); }
