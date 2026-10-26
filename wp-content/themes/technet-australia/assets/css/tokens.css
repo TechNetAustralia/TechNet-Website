@@ -16,15 +16,16 @@
 	--font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
 	/* colors.css */
-	--navy-900: #0b2a5c;
-	--navy-800: #122e46;
-	--navy-700: #154fab;
-	--navy-600: #2a5478;
-	--navy-500: #3d6d95;
-	--green-700: #1f6b45;
-	--green-600: #16b25c;
-	--green-500: #469e6c;
-	--green-100: #dff7e7;
+		--navy-900: #263238;
+	--navy-800: #294c60;
+	--navy-700: #527d9b;
+	--navy-600: #527d9b;
+	--navy-500: #527d9b;
+	--green-700: #145a45;
+	--green-600: #145a45;
+	--green-500: #6faf91;
+	--green-100: #e3f0ea;
+	--yellow-500: #f1b820;
 	--neutral-0: #ffffff;
 	--neutral-50: #f7f6f3;
 	--neutral-100: #eeece6;
@@ -47,7 +48,7 @@
 	--brand-accent: var(--green-600);
 	--surface-page: var(--neutral-50);
 	--surface-card: var(--neutral-0);
-	--surface-sunken: var(--neutral-100);
+	--surface-sunken: #d9e7ec;
 	--surface-inverse: var(--navy-900);
 	--border-subtle: var(--neutral-200);
 	--border-default: var(--neutral-300);
