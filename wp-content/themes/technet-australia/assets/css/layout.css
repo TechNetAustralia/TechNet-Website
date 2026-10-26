@@ -18,15 +18,8 @@
 	padding-bottom: var(--space-5);
 	flex-wrap: wrap;
 }
-.technet-header__wordmark {
-	color: #fff;
-	font-family: var(--font-sans);
-	font-weight: var(--fw-bold);
-	font-size: 22px;
-	text-decoration: none;
-}
-.technet-header__wordmark-dot { color: var(--green-500); }
-.technet-header__wordmark-sub { font-weight: var(--fw-regular); color: var(--neutral-300); }
+.technet-header__logo { display: inline-flex; align-items: center; }
+.technet-header__logo img { height: 36px; width: auto; display: block; }
 .technet-header__nav-list {
 	display: flex;
 	gap: var(--space-6);
